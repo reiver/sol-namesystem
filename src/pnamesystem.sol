@@ -68,8 +68,8 @@ contract PNameSystem is INameSystem {
 	// INTERNAL FUNCTIONS                                                                             //
 	////////////////////////////////////////////////////////////////////////////////////////////////////
 
-	function _get(bytes32 digest) internal view returns (address) {
-		return addresses[digest];
+	function _get(bytes32 _digest) internal view returns (address) {
+		return addresses[_digest];
 	}
 
 	function _length() internal view returns (uint256) {
@@ -80,17 +80,17 @@ contract PNameSystem is INameSystem {
 		return thenamespace;
 	}
 
-	function _numAddresses(address prevaddr, address curraddr) internal {
-		bool prevzero = (0x0000000000000000000000000000000000000000 == prevaddr);
-		bool currzero = (0x0000000000000000000000000000000000000000 == curraddr);
+	function _numAddresses(address _prevaddr, address _curraddr) internal {
+		bool prevzero = (0x0000000000000000000000000000000000000000 == _prevaddr);
+		bool currzero = (0x0000000000000000000000000000000000000000 == _curraddr);
 
-		if          ( prevzero &&  currzero) { // 0x0000000000000000000000000000000000000000 == prevaddr && 0x0000000000000000000000000000000000000000 == curraddr
+		if          ( prevzero &&  currzero) { // 0x0000000000000000000000000000000000000000 == _prevaddr && 0x0000000000000000000000000000000000000000 == _curraddr
 			// nothing here
-		} else if   ( prevzero && !currzero) { // 0x0000000000000000000000000000000000000000 == prevaddr && 0x0000000000000000000000000000000000000000 != curraddr
+		} else if   ( prevzero && !currzero) { // 0x0000000000000000000000000000000000000000 == _prevaddr && 0x0000000000000000000000000000000000000000 != _curraddr
 			++numAddresses;
-		} else if   (!prevzero &&  currzero) { // 0x0000000000000000000000000000000000000000 != prevaddr && 0x0000000000000000000000000000000000000000 == curraddr
+		} else if   (!prevzero &&  currzero) { // 0x0000000000000000000000000000000000000000 != _prevaddr && 0x0000000000000000000000000000000000000000 == _curraddr
 			--numAddresses;
-		} else { // (!prevzero && !currzero)   // 0x0000000000000000000000000000000000000000 != prevaddr && 0x0000000000000000000000000000000000000000 != curraddr
+		} else { // (!prevzero && !currzero)   // 0x0000000000000000000000000000000000000000 != _prevaddr && 0x0000000000000000000000000000000000000000 != _curraddr
 			// nothing here
 		}
 	}
