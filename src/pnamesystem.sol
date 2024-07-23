@@ -1,8 +1,9 @@
 pragma solidity ^0.8.13;
 
 import {INameSystem} from "src/inamesystem.sol";
+import "openzeppelin-contracts/contracts/access/Ownable.sol";
 
-contract PNameSystem is INameSystem {
+contract PNameSystem is INameSystem, Ownable {
 
 	////////////////////////////////////////////////////////////////////////////////////////////////////
 	// CONSTANTS                                                                                      //
@@ -21,7 +22,7 @@ contract PNameSystem is INameSystem {
 	// CONSTRUCTOR, FALLBACKS                                                                         //
 	////////////////////////////////////////////////////////////////////////////////////////////////////
 
-	constructor(address _thepotentate) {
+	constructor(address _thepotentate) Ownable(_thepotentate) {
 		thepotentate = _thepotentate;
 	}
 
@@ -49,7 +50,7 @@ contract PNameSystem is INameSystem {
 		return _potentate();
 	}
 
-	function set(bytes32 _digest, address _addr) external {
+	function set(bytes32 _digest, address _addr) external onlyOwner {
 		return _set(_digest, _addr);
 	}
 

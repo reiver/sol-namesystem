@@ -48,6 +48,7 @@ contract PNameSystemTest is Test {
 				bytes32 digest = test.setters[i].digest;
 				address value = test.setters[i].value;
 
+				vm.prank(test.potentate);
 				pnamesystem.set(digest, value);
 			}
 
