@@ -14,8 +14,6 @@ contract PNameSystem is INameSystem {
 
 	address private thepotentate;
 
-	string private thenamespace;
-
 	mapping(bytes32=>address) addresses;
 	uint256 numAddresses;
 
@@ -23,9 +21,8 @@ contract PNameSystem is INameSystem {
 	// CONSTRUCTOR, FALLBACKS                                                                         //
 	////////////////////////////////////////////////////////////////////////////////////////////////////
 
-	constructor(address _thepotentate, string memory _thenamespace) {
+	constructor(address _thepotentate) {
 		thepotentate = _thepotentate;
-		thenamespace = _thenamespace;
 	}
 
 	////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -46,10 +43,6 @@ contract PNameSystem is INameSystem {
 
 	function length() external view returns (uint256) {
 		return _length();
-	}
-
-	function namespace() external view returns(string memory) {
-		return _namespace();
 	}
 
 	function potentate() external view returns(address) {
@@ -74,10 +67,6 @@ contract PNameSystem is INameSystem {
 
 	function _length() internal view returns (uint256) {
 		return numAddresses;
-	}
-
-	function _namespace() internal view returns(string memory) {
-		return thenamespace;
 	}
 
 	function _numAddresses(address _prevaddr, address _curraddr) internal {

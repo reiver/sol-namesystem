@@ -11,7 +11,7 @@ contract NameSystemScript is Script {
     function run() public {
         vm.startBroadcast();
 
-        namesystem = new NameSystem("dorood");
+        namesystem = new NameSystem();
 
         vm.stopBroadcast();
     }

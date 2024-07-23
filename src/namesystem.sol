@@ -16,7 +16,7 @@ contract NameSystem is PNameSystem {
 	// CONSTRUCTOR, FALLBACKS                                                                         //
 	////////////////////////////////////////////////////////////////////////////////////////////////////
 
-	constructor(string memory _thenamespace) PNameSystem(msg.sender, _thenamespace) {
+	constructor() PNameSystem(msg.sender) {
 		// nothing here
 	}
 
